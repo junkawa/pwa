@@ -1,0 +1,39 @@
+body {
+    background-color: #ffffff;
+}
+
+.view-container {
+    background-color: #f2f2f2;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 85vw;
+}
+
+.button-container {
+    background-color: #f2f2f2;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    width: 85vw;
+}
+
+.view-container .my-view1 {
+    margin-top: 1.5vw;
+    font-size: 4vw;
+    text-align: center;
+}
+.view-container .my-view2 {
+    font-size: 6vw;
+    text-align: center;
+//    box-shadow: 0 1px 3px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.23);
+}
+
+.button-container .my-button {
+    font-size: 2vw;
+}
+
