@@ -1,9 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
+(function() {
+  'use strict';
     if ('serviceWorker' in navigator) {
 	navigator.serviceWorker
-            .register('./sw.js');
+            .register('./sw.js')
+            .then(function() { console.log('Service Worker Registered'); });
     }
-}, false);
+})();
 
 var warekiMap = {"heisei":"平成", "showa":"昭和", "taisho":"大正", "meiji":"明治"}
 var nenMap = {"nen":"年"}
