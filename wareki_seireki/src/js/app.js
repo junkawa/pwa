@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', () => {
+    if ('serviceWorker' in navigator) {
+	navigator.serviceWorker
+            .register('./sw.js');
+    }
+}, false);
 
 var warekiMap = {"heisei":"平成", "showa":"昭和", "taisho":"大正", "meiji":"明治"}
 var nenMap = {"nen":"年"}
