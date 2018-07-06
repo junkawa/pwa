@@ -4,23 +4,32 @@ body {
 
 .view-container {
     background-color: #f2f2f2;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     margin-left: auto;
     margin-right: auto;
-    width: 85vw;
+    width: 90vw;
 }
 
 .button-container {
     background-color: #f2f2f2;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 3vh;
+    margin-bottom: 1vh;
     padding-top: 1vw;
     padding-bottom: 1vw;
     padding-left: 2vw;
     padding-right: 2vw;
-    width: 85vw;
+    width: 90vw;
+}
+
+.menu-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
+//    padding-right: 2vw;
+    text-align:right;
+    font-size: 2vw;
 }
 
 .view-container .my-view1 {
@@ -35,6 +44,5 @@ body {
 }
 
 .button-container .my-button {
-    font-size: 2vw;
+    font-size: 4vw;
 }
-
