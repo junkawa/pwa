@@ -2,7 +2,7 @@
     "extends": ["eslint:recommended"],
     "plugins": [],
     "parserOptions": {},
-    "env": {"browser": true,"jquery": true},
+    "env": {"browser": true, "jquery": true, "es6": true, "node": true},
     "globals": {},
-    "rules": {"no-console": "off"}
+    "rules": {"no-console": "off", "no-undef": "warn"}
 }
