@@ -2,7 +2,7 @@
   "name": "seireki_wareki",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/js/index.js",
   "directories": {
     "test": "test"
   },
@@ -13,5 +13,6 @@
   },
   "author": "Jun Kawashima",
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {}
 }

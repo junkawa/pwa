@@ -1,3 +1,7 @@
 #!/bin/env bash
 
-eslint ./src/js/app.js
+set -eux
+
+eslint ./src/js/app.js ./src/js/browser.js
+
+mocha
