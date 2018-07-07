@@ -2,6 +2,6 @@
 
 set -eux
 
-eslint ./src/js/app.js
+eslint ./src/js/
 
 mocha

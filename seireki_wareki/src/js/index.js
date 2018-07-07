@@ -11,40 +11,40 @@ var app = require('./app');
 })();
 
 $('#eraList a').on('click', function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-    wareki = $(this).attr("id")
+    e.preventDefault();
+    $(this).tab('show');
+    app.setWareki($(this).attr("id"));
 
-    updateView()
+    updateView();
 })
 
 $('#tensplaceList a').on('click', function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-    tensplace = $(this).attr("id")
+    e.preventDefault();
+    $(this).tab('show');
+    app.setTensplace($(this).attr("id"));
 
-    updateView()
+    updateView();
 })
 
 $('#onesplaceList a').on('click', function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-    onesplace = $(this).attr("id")
+    e.preventDefault();
+    $(this).tab('show');
+    app.setOnesplace($(this).attr("id"));
 
-    updateView()
+    updateView();
 })
 
 function updateView() {
-    updateView1()
-    updateView2()
+    updateView1();
+    updateView2();
 }
 
 function updateView1() {
-    //var wareki = $('#eraList').tabs('option', 'active')//.attr("id")
-    $('#view1').text(app.getTextView1(wareki, tensplace, onesplace))
+    //var wareki = $('#eraList').tabs('option', 'active')//.attr("id");
+    $('#view1').text(app.getTextView1());
 }
 
 function updateView2() {
-    $('#view2').text(app.getTextView2(wareki, tensplace, onesplace))
+    $('#view2').text(app.getTextView2());
 }
 
