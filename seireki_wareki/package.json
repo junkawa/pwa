@@ -1,5 +1,5 @@
 {
-  "name": "wareki_seireki",
+  "name": "seireki_wareki",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,9 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf dist && mkdir dist && cp -a src/* dist/ && workbox generateSW workbox-config.js",
-    "deploy": "rm -rf ../docs/wareki_seireki && mkdir ../docs/wareki_seireki && cp -a dist/* ../docs/wareki_seireki/"
+    "test": "sh test.sh",
+    "build": "sh build.sh",
+    "deploy": "sh deploy.sh"
   },
   "author": "Jun Kawashima",
   "license": "MIT",
