@@ -9,7 +9,7 @@
   "scripts": {
     "test": "sh test.sh",
     "build": "sh build.sh",
-    "deploy": "sh deploy.sh"
+    "deploy": "sh deploy.sh $npm_package_name"
   },
   "author": "Jun Kawashima",
   "license": "MIT",

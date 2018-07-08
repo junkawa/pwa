@@ -2,7 +2,8 @@
 
 set -eux
 
-DOC_DIR="../docs/seireki_wareki"
+# called from package.json
+DOC_DIR="../docs/${1}"
 
 rm -rf ${DOC_DIR}
 
