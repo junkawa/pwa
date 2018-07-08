@@ -20,10 +20,6 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.3.1/workbox
  */
 self.__precacheManifest = [
   {
-    "url": "css/bootstrap-material-design.min.css",
-    "revision": "840df82985d3b2a4b3ee41ce91358737"
-  },
-  {
     "url": "css/style.css",
     "revision": "56b0278c449853c32f67dcb799f486a0"
   },
@@ -61,23 +57,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "a7fe4d1c5134e25a48055069faa3d840"
+    "revision": "8df0986742799608d6c46666b7fa4385"
   },
   {
     "url": "js/app.js",
     "revision": "45c52904e5053450179b889116035fec"
-  },
-  {
-    "url": "js/bootstrap-material-design.min.js",
-    "revision": "176e510edea8758837299ca38b90aa90"
-  },
-  {
-    "url": "js/jquery-3.3.1.slim.min.js",
-    "revision": "99b0a83cf1b0b1e2cb16041520e87641"
-  },
-  {
-    "url": "js/popper.min.js",
-    "revision": "83fb8c4d9199dce0224da0206423106f"
   },
   {
     "url": "manifest.json",
@@ -86,3 +70,6 @@ self.__precacheManifest = [
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+workbox.routing.registerRoute(/^https:\/\/unpkg\.com/, workbox.strategies.cacheFirst(), 'GET');
+workbox.routing.registerRoute(/^https:\/\/code\.jquery\.com/, workbox.strategies.cacheFirst(), 'GET');
