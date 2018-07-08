@@ -1,0 +1,48 @@
+body {
+    background-color: #ffffff;
+}
+
+.view-container {
+    background-color: #f2f2f2;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90vw;
+}
+
+.button-container {
+    background-color: #f2f2f2;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    width: 90vw;
+}
+
+.menu-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vh;
+    width: 90vw;
+    text-align:right;
+    font-size: 2.5vh;
+}
+
+.view-container .my-view1 {
+    margin-top: 1vh;
+    font-size: 4vh;
+    text-align: center;
+}
+.view-container .my-view2 {
+    font-size: 5vh;
+    text-align: center;
+//    box-shadow: 0 1px 3px rgba(0,0,0,0.16), 0 1px 3px rgba(0,0,0,0.23);
+}
+
+.button-container .my-button {
+    font-size: 3vh;
+}
