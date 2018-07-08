@@ -10,10 +10,10 @@ var app = require('./app');
     }
 })();
 
-$('#eraList a').on('click', function (e) {
+$('#hundredsplaceList a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    app.setWareki($(this).attr("id"));
+    app.setHundredsplace($(this).attr('id'));
 
     updateView();
 })
@@ -21,7 +21,7 @@ $('#eraList a').on('click', function (e) {
 $('#tensplaceList a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    app.setTensplace($(this).attr("id"));
+    app.setTensplace($(this).attr('id'));
 
     updateView();
 })
@@ -29,22 +29,20 @@ $('#tensplaceList a').on('click', function (e) {
 $('#onesplaceList a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    app.setOnesplace($(this).attr("id"));
+    app.setOnesplace($(this).attr('id'));
 
     updateView();
 })
 
-function updateView() {
+const updateView = () => {
     updateView1();
     updateView2();
-}
+};
 
-function updateView1() {
-    //var wareki = $('#eraList').tabs('option', 'active')//.attr("id");
+const updateView1 = () => {
     $('#view1').text(app.getTextView1());
-}
+};
 
-function updateView2() {
+const updateView2 = () => {
     $('#view2').text(app.getTextView2());
-}
-
+};

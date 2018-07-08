@@ -1,73 +1,126 @@
 'use strict';
 
-const warekiMap = {"heisei":"平成", "showa":"昭和", "taisho":"大正", "meiji":"明治"};
-const nenMap = {"nen":"年"};
-const genMap = {"gen":"元"};
+const warekiMap = {'heisei':'平成', 'showa':'昭和', 'taisho':'大正', 'meiji':'明治'};
+const nenMap = {'nen':'年'};
+const genMap = {'gen':'元'};
 
-let wareki = "heisei";
-let tensplace = "3";
-let onesplace = "0";
+let hundredsplace = '20';
+let tensplace = '1';
+let onesplace = '8';
 
-var getTextView1_ = function(w, t, o) {
-    var year = t+o;
-    if (t === "0") year = o;
-    if (year === "0") return "--";
-    if (year === "1") year = genMap["gen"];
-    return warekiMap[wareki]+year+nenMap["nen"];
-}
+const getTextView1_ = (h, t, o) => {
+    var year = h+t+o;
+    return year;
+};
 
-var getTextView1 = function() {
-    getTextView1_(wareki, tensplace, onesplace);
-}
+const getTextView1 = () => {
+    return getTextView1_(hundredsplace, tensplace, onesplace);
+};
 
-var getTextView2_ = function(w, t, o) {
-    var year = t+o;
-    if (year === "00") return "--";
+const getTextView2_ = (h, t, o) => {
+    var wareki = getWareki(h, t, o);
+    return wareki;
+};
+
+const getTextView2 = () => {
+    return getTextView2_(hundredsplace, tensplace, onesplace);
+};
+
+const meijiBaseSeireki = 1868;
+const isMeiji = (seireki) => {
+    return (meijiBaseSeireki<=seireki && seireki<=1911);
+};
+
+const taishoBaseSeireki = 1912;
+const isTaisho = (seireki) => {
+    return (taishoBaseSeireki<=seireki && seireki<=1925);
+};
+
+const showaBaseSeireki = 1926;
+const isShowa = (seireki) => {
+    return (showaBaseSeireki<=seireki && seireki<=1988);
+};
+
+const heiseiBaseSeireki = 1989;
+const isHeisei = (seireki) => {
+    return (heiseiBaseSeireki<=seireki && seireki<=2018);
+};
+
+const getWareki = (h, t, o) => {
+    let seireki = Number(h+t+o);
+    let gengou = '';
+    let wareki = 0;
     
-    var seireki = getSeireki(wareki, tensplace, onesplace);
-    return seireki;
-}
-
-var getTextView2 = function() {
-    getTextView2_(wareki, tensplace, onesplace);
-}
-
-var getNumber = function(t, o) {
-    return Number(t)*10 + Number(o);
-}
-
-var getBase = function(w) {
-    switch(w) {
-    case "heisei":
-	return 1989;
-    case "showa":
-	return 1926;
-    case "taisho":
-	return 1912;
-    case "meiji":
-	return 1868;
-    default:
-	return 0;
+    if (isMeiji(seireki)) {
+	gengou='meiji';
+	wareki = seireki-meijiBaseSeireki+1;
+    } else if (isTaisho(seireki)) {
+	gengou='taisho';
+	wareki = seireki-taishoBaseSeireki+1;
+    } else if (isShowa(seireki)) {
+	gengou='showa';
+	wareki = seireki-showaBaseSeireki+1;
+    } else if (isHeisei(seireki)) {
+	gengou='heisei';
+	wareki = seireki-heiseiBaseSeireki+1;
     }
-}
 
-var getSeireki = function(w, t, o) {
-    var num = getNumber(t, o);
-    var base = getBase(w);
-    return base + (num-1);
-}
+    if (wareki === 1) wareki=genMap['gen'];
 
-var setWareki = function(w) {
-    wareki = w;
-}
+    if (gengou === '')
+	return '--';
 
-var setTensplace = function(t) {
-    tensplace = t;
-}
+    return warekiMap[gengou]+wareki+nenMap['nen'];
+};
 
-var setOnesplace = function(o) {
-    onesplace = o;
-}
+const setHundredsplace = (h) => {
+    switch(h) {
+    case '19':
+    case '20':
+	hundredsplace = h;
+	break;
+    default:
+	throw new Error('invalid argument');
+    }
+};
 
-module.exports = {getNumber, getTextView1, getTextView2, setWareki, setTensplace, setOnesplace}
+const setTensplace = (t) => {
+    switch(t) {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+	tensplace = t;
+	break;
+    default:
+	throw new Error('invalid argument');
+    }
+};
+
+const setOnesplace = (o) => {
+    switch(o) {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+	onesplace = o;
+	break;
+    default:
+	throw new Error('invalid argument');
+    }
+};
+
+module.exports = {getTextView1, getTextView2, setHundredsplace, setTensplace, setOnesplace}
 

@@ -4,5 +4,5 @@
     "parserOptions": {},
     "env": {"browser": true, "jquery": true, "es6": true, "node": true},
     "globals": {},
-    "rules": {"no-console": "off", "no-undef": "warn"}
+    "rules": {"no-console": "off", "no-undef": "warn", "no-unused-vars": "warn"}
 }
