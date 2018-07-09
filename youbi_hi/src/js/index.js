@@ -8,6 +8,7 @@ var app = require('./app');
             .register('./sw.js')
             .then(function() { console.log('Service Worker Registered'); });
     }
+    firstView();
 })();
 
 $('#tensplaceList a').on('click', function (e) {
@@ -53,4 +54,9 @@ const updateView1 = () => {
 
 const updateView2 = () => {
     $('#view2').text(app.getTextView2());
+};
+
+const firstView = () => {
+    app.setDate(new Date());
+    updateView();
 };
