@@ -29,20 +29,25 @@ main {
     font-size: 3vh;
 }
 
-.button-container .col-4 {
-    padding-left: 1vw;
-    padding-right: 1vw;
-}
+/* .button-container .col-4 { */
+/*     padding-left: 7px; */
+/*     padding-right: 7px; */
+/* } */
 
 .button-container-in {
     background-color: #f2f2f2;
 }
 
+/* .button-container-in .col-6 { */
+/*     padding-left: 1vw; */
+/*     padding-right: 1vw; */
+/* } */
+
 .list-group-item {
     padding-top: 1vh;
     padding-bottom: 1vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
+    padding-left: 2.5vw;
+    padding-right: 0.5vw;
 }
 
 .menu-container {
