@@ -1,6 +1,6 @@
 'use strict';
 
-const numWeekMap = ['san','mon','tue','wed','thu','fi','sat'];
+const numWeekMap = ['sun','mon','tue','wed','thu','fri','sat'];
 const weekStrMap = {'mon':'月曜日','tue':'火曜日','wed':'水曜日','thu':'木曜日','fri':'金曜日','sat':'土曜日','sun':'日曜日'};
 
 let tensplace = '1';
@@ -23,7 +23,7 @@ const setTensplace = (t) => {
 	tensplace = t;
 	break;
     default:
-	throw new Error('invalid argument');
+	throw new Error('invalid argument:'+t);
     }
 };
 
@@ -42,7 +42,7 @@ const setOnesplace = (o) => {
 	onesplace = o;
 	break;
     default:
-	throw new Error('invalid argument');
+	throw new Error('invalid argument:'+o);
     }
 };
 
@@ -63,7 +63,7 @@ const setMonth = (m) => {
 	month = m;
 	break;
     default:
-	throw new Error('invalid argument');
+	throw new Error('invalid argument:'+m);
     }
 };
 
@@ -79,17 +79,8 @@ const setWeek = (w) => {
 	week = w;
 	break;
     default:
-	throw new Error('invalid argument');
+	throw new Error('invalid argument:'+w);
     }
-};
-
-const setDate = (d) => {
-    const y = d.getFullYear();
-    const m = d.getMonth();
-    setTensplace(String((y-2000)/10));
-    setOnesplace(String((y-2000)%10));
-    setMonth(String(m+1));
-    setWeek(String(d.getDay()));
 };
 
 const getTextView1_ = (t, o, m, w) => {
@@ -106,7 +97,12 @@ const getTextView2_ = (t, o, m, w) => {
     const lastDay = (new Date(d.getFullYear(), d.getMonth() + 1, 0)).getDate();
     
     const weekOfTheFirstDay = d.getDay();
-    const myFirstDay = 1 + Math.abs(w-weekOfTheFirstDay);
+    let myFirstDay = 1;
+    if (w>=weekOfTheFirstDay) {
+	myFirstDay += w-weekOfTheFirstDay;
+    } else {
+	myFirstDay += w-weekOfTheFirstDay+7;
+    }
 
     let ret = '';
     for (let day = myFirstDay; day <= lastDay; day+=7) {
@@ -120,4 +116,4 @@ const getTextView2 = () => {
     return getTextView2_(tensplace, onesplace, month, week);
 };
 
-module.exports = {setTensplace, setOnesplace, setMonth, setWeek, setDate, getTextView1, getTextView2};
+module.exports = {setTensplace, setOnesplace, setMonth, setWeek, getTextView1, getTextView2};

@@ -21,7 +21,7 @@ describe('app', function () {
         });
     });
     describe('getTextView2', function () {
-	const expect1 = '4日 11日 18日 25日';
+	const expect1 = '5日 12日 19日 26日';
         it('returns '+expect1, function () {
 	    app.setTensplace('1');
 	    app.setOnesplace('8');
@@ -44,6 +44,14 @@ describe('app', function () {
 	    app.setMonth('4');
 	    app.setWeek('2');
             assert.equal(app.getTextView2(), expect3);
+        });
+	const expect4 = '3日 10日 17日 24日 31日';
+        it('returns '+expect4, function () {
+	    app.setTensplace('0');
+	    app.setOnesplace('0');
+	    app.setMonth('1');
+	    app.setWeek('1');
+            assert.equal(app.getTextView2(), expect4);
         });
     });
 });
