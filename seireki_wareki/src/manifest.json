@@ -1,6 +1,6 @@
 {
-  "name": "平成、昭和、大正、明治から西暦に変換【オフライン対応】",
-  "short_name": "和暦→西暦",
+  "name": "西暦から平成、昭和、大正、明治に変換【オフライン対応】",
+  "short_name": "西暦→和暦",
   "theme_color": "#00988a",
   "background_color": "#ffffff",
   "display": "standalone",
