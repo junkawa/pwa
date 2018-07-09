@@ -2,3 +2,51 @@ body {
     background-color: #ffffff;
 }
 
+main {
+    width: 95vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.view-container {
+    background-color: #f2f2f2;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.view-container .my-view1 {
+    font-size: 3vh;
+    text-align: center;
+}
+
+.view-container .my-view2 {
+    font-size: 4vh;
+    text-align: center;
+}
+
+.button-container {
+    margin-bottom: 1vh;
+    font-size: 3vh;
+}
+
+.button-container .col-4 {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.button-container-in {
+    background-color: #f2f2f2;
+}
+
+.list-group-item {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.menu-container {
+    margin-bottom: 1vh;
+    text-align:right;
+    font-size: 2.5vh;
+}
