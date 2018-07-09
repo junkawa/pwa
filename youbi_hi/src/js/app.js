@@ -1,5 +1,7 @@
 'use strict';
 
+const weekMap = {'mon':'月曜日','tue':'火曜日','wed':'水曜日','thu':'木曜日','fri':'金曜日','sat':'土曜日','sun':'日曜日'};
+
 let tensplace = '1';
 let onesplace = '8';
 let week = 'mon';
@@ -80,4 +82,12 @@ const setWeek = (w) => {
     }
 };
 
-module.exports = {setTensplace, setOnesplace, setMonth, setWeek}
+const getTextView1_ = (t, o, m, w) => {
+    return `20${t}${o}年${m}月 ${weekMap[w]}`;
+};
+
+const getTextView1 = () => {
+    return getTextView1_(tensplace, onesplace, month, week);
+};
+
+module.exports = {setTensplace, setOnesplace, setMonth, setWeek, getTextView1}
