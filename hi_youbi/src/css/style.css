@@ -7,3 +7,51 @@ main {
     margin-left: auto;
     margin-right: auto;
 }
+
+.view-container {
+    background-color: #f2f2f2;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.button-container {
+    margin-bottom: 1vh;
+    font-size: 3vh;
+}
+
+.button-container-in {
+    background-color: #f2f2f2;
+}
+
+.button-container-top-in {
+    background-color: #f2f2f2;
+    margin-bottom: 2.5vh;
+}
+
+.row-5 {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.row-5 >div {
+    padding: 0 5px;
+}
+
+.list-group-item {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 2.5vw;
+    padding-right: 0.5vw;
+}
+
+.list-group-horizontal .list-group {
+	display: flex;
+	flex-direction: row;
+}
+
+.list-group-horizontal .list-group .list-group-item {
+	margin-bottom: 0;
+	margin-right: 0;
+ 	border-right-width: 0;
+}
+
