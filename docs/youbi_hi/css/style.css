@@ -55,3 +55,12 @@ main {
     text-align:right;
     font-size: 2.5vh;
 }
+
+.row-5 {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.row-5 >div {
+    padding: 0 5px;
+}
