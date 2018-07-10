@@ -1,0 +1,13 @@
+body {
+    background-color: #ffffff;
+    font-size: 2vh;
+}
+
+h1 {
+    font-size: 4vh;
+}
+
+li {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
