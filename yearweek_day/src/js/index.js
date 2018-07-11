@@ -31,14 +31,6 @@ $('#yearOnesPlaceList a').on('click', function (e) {
     updateView();
 });
 
-$('#monthList a').on('click', function (e) {
-    e.preventDefault();
-    $(this).tab('show');
-    app.setMonth($(this).attr('id'));
-
-    updateView();
-});
-
 $('#weekTensPlaceList a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
