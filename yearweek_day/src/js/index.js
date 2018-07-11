@@ -47,6 +47,43 @@ $('#weekOnesPlaceList a').on('click', function (e) {
     updateView();
 });
 
+const setDate = (d) => {
+    const y = d.getFullYear();
+    const m = d.getMonth()+1;
+    const day = d.getDate();
+
+    const yearHundredsPlace = String( parseInt(y/100) );
+    app.setYearHundredsPlace(yearHundredsPlace);
+    $('#yearHundredsPlaceList a#'+yearHundredsPlace).tab('show');
+
+    const yearTensPlace = String( parseInt((y%100)/10) );
+    app.setYearTensPlace(yearTensPlace);
+    $('#yearTensPlaceList a#'+yearTensPlace).tab('show');
+
+    const yearOnesPlace = String((y%100)%10);
+    app.setYearOnesPlace(yearOnesPlace);
+    $('#yearOnesPlaceList a#'+yearOnesPlace).tab('show');
+
+    const week = app.getWeek(y, m, day);
+
+    const weekTensPlace = String(parseInt(week/10));
+    app.setWeekTensPlace(weekTensPlace);
+    $('#weekTensPlaceList a#'+weekTensPlace).tab('show');
+
+    const weekOnesPlace = String(week%10);
+    app.setWeekOnesPlace(weekOnesPlace);
+    $('#weekOnesPlaceList a#'+weekOnesPlace).tab('show');
+};
+
+const firstView = () => {
+    setDate(new Date());
+    updateView();
+};
+
+(function() {
+    firstView();
+})();
+
 (function() {
     if ('serviceWorker' in navigator) {
 	navigator.serviceWorker

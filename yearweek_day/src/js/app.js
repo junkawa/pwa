@@ -89,9 +89,9 @@ const setWeekOnesPlace = (o) => {
     }
 };
 
-const getLastWeek_ = (y) => {
+const getWeek_ = (y, m, d) => {
     let oneJan = new Date(y, 0, 1); // JAN/1
-    let last = new Date(y, 11, 28); // DEC/28
+    let last = new Date(y, m-1, d);
     
     // http://ltd.hatenablog.com/entry/2014/07/02/181833
     let day = Math.ceil((last - oneJan) / 86400000);
@@ -102,6 +102,14 @@ const getLastWeek_ = (y) => {
     if ((oneJan.getDay()+6)%7 >= 4) diff = 1; // 1/1 and 1/4 are not in same week;
 
     return week - diff;
+}
+
+const getLastWeek_ = (y) => {
+    return getWeek_(y, 12, 28);
+}
+
+const getWeek = (y, m, d) => {
+    return getWeek_(y, m, d);
 }
 
 const invalidWeek_ = (y, w) => {
@@ -149,4 +157,4 @@ const getTextView2 = () => {
     return getTextView2_(yearHundredsPlace, yearTensPlace, yearOnesPlace, weekTensPlace, weekOnesPlace);
 };
 
-module.exports = {setYearHundredsPlace, setYearTensPlace, setYearOnesPlace, setWeekTensPlace, setWeekOnesPlace, getTextView1, getTextView2};
+module.exports = {setYearHundredsPlace, setYearTensPlace, setYearOnesPlace, setWeekTensPlace, setWeekOnesPlace, getTextView1, getTextView2, getWeek};
