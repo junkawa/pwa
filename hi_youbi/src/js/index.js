@@ -10,7 +10,7 @@ const updateView = () => {
 $('#yearHundredsPlaceList a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    app.setHundredsPlace($(this).attr('id'));
+    app.setYearHundredsPlace($(this).attr('id'));
 
     updateView();
 });
@@ -18,7 +18,7 @@ $('#yearHundredsPlaceList a').on('click', function (e) {
 $('#yearTensPlaceList a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    app.setTensPlace($(this).attr('id'));
+    app.setYearTensPlace($(this).attr('id'));
 
     updateView();
 });
@@ -26,7 +26,7 @@ $('#yearTensPlaceList a').on('click', function (e) {
 $('#yearOnesPlaceList a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    app.setOnesPlace($(this).attr('id'));
+    app.setYearOnesPlace($(this).attr('id'));
 
     updateView();
 });
@@ -42,7 +42,7 @@ $('#monthList a').on('click', function (e) {
 $('#dayTensPlaceList a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    app.setDayTensplace($(this).attr('id'));
+    app.setDayTensPlace($(this).attr('id'));
 
     updateView();
 });
@@ -50,7 +50,7 @@ $('#dayTensPlaceList a').on('click', function (e) {
 $('#dayOnesPlaceList a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    app.setDayOnesplace($(this).attr('id'));
+    app.setDayOnesPlace($(this).attr('id'));
 
     updateView();
 });
