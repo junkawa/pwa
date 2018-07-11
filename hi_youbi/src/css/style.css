@@ -67,3 +67,8 @@ main {
     border-right-width: 0;
 }
 
+.menu-container {
+    margin-bottom: 1vh;
+    text-align:right;
+    font-size: 2.5vh;
+}
