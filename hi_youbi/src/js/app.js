@@ -1,5 +1,8 @@
 'use strict';
 
+const numWeekMap = ['sun','mon','tue','wed','thu','fri','sat'];
+const weekStrMap = {'mon':'月曜日','tue':'火曜日','wed':'水曜日','thu':'木曜日','fri':'金曜日','sat':'土曜日','sun':'日曜日'};
+
 let yearHundredsPlace = '20';
 let yearTensPlace = '1';
 let yearOnesPlace = '8';
@@ -110,6 +113,8 @@ const setDayOnesPlace = (o) => {
 };
 
 const getTextView1_ = (yh, yt, yo, m, dt, dop) => {
+    if (dt+dop === '00') return '--';
+    if (dt === '0') dt = '';
     return `${yh}${yt}${yo}年${m}月${dt}${dop}日`;
 };
 
@@ -118,7 +123,13 @@ const getTextView1 = () => {
 };
 
 const getTextView2_ = (yh, yt, yo, m, dt, dop) => {
-    return '';
+    if (dt+dop === '00') return '';
+
+    const dStr = `${yh}${yt}${yo}/${m}/${dt}${dop}`;
+    let d = new Date(dStr);
+    const weekth = parseInt(Number(`${dt}${dop}`)/7) + 1;
+    const ret = `第${weekth}${weekStrMap[numWeekMap[d.getDay()]]}`;
+    return ret;
 };
 
 const getTextView2 = () => {
