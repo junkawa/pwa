@@ -89,17 +89,34 @@ const setWeekOnesPlace = (o) => {
     }
 };
 
-const getLastWeek_ = (y, w) => {
-    var onejan = new Date(y, 0, 1); // JAN/1
-    var last = new Date(y, 11, 28); // DEC/28
-    return Math.ceil((((last - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+const getLastWeek_ = (y) => {
+    let oneJan = new Date(y, 0, 1); // JAN/1
+    let last = new Date(y, 11, 28); // DEC/28
+    
+    // http://ltd.hatenablog.com/entry/2014/07/02/181833
+    let day = Math.ceil((last - oneJan) / 86400000);
+    const offset = oneJan.getDay() - 1;
+    const week = Math.floor((day + offset) / 7) + 1;
+
+    let diff = 0;
+    if ((oneJan.getDay()+6)%7 >= 4) diff = 1; // 1/1 and 1/4 are not in same week;
+
+    return week - diff;
+}
+
+const invalidWeek_ = (y, w) => {
+    if (w === 0) return true;
+    const lastWeek = getLastWeek_(y);
+    // console.log(lastWeek);
+    if (lastWeek < w) return true;
+
+    return false;
 }
 
 const getTextView1_ = (yh, yt, yo, wt, wo) => {
-    if (wt+wo === '00') return '--';
-    const lastWeek = getLastWeek_(Number(yh+yt+yo), Number(wt+wo));
-    console.log(lastWeek);
-    if (lastWeek < Number(wt+wo)) return '--';
+    if (invalidWeek_(Number(yh+yt+yo), Number(wt+wo))) return '--';
+
+    if (wt === '0') wt = '';
     
     return `${yh}${yt}${yo}年第${wt}${wo}週`;
 };
@@ -109,21 +126,23 @@ const getTextView1 = () => {
 };
 
 const getTextView2_ = (yh, yt, yo, wt, wo) => {
+    if (invalidWeek_(Number(yh+yt+yo), Number(wt+wo))) return '';
+
     const startStr = `${yh}${yt}${yo}/1/4`;
     let startDate = new Date(startStr);
-    const day = startDate.getDay(); 	// 0-6 dayOfWeek
-    console.log(startDate);
+    const dayFromMonday = (startDate.getDay()+6)%7; 	// 0,1,2,3,4,5,6 -> 6,0,1,2,3,4,5
+    // console.log(startDate);
 
-    const targetTime = startDate.getTime() + (-day+(Number(wt+wo)-1)*7)*24*60*60*1000;
+    const targetTime = startDate.getTime() + (-dayFromMonday+(Number(wt+wo)-1)*7)*24*60*60*1000;
     let targetDate = new Date(targetTime);
-    console.log(targetDate);
+    // console.log(targetDate);
 
     
     const targetTime2 = targetDate.getTime() + 6*24*60*60*1000;
     let targetDate2 = new Date(targetTime2);
-    console.log(targetDate2);
+    // console.log(targetDate2);
 
-    return `${targetDate.getMonth()+1}月${targetDate.getDate()}日 〜 ${targetDate2.getMonth()+1}月${targetDate2.getDate()}`;
+    return `${targetDate.getMonth()+1}月${targetDate.getDate()}日 〜 ${targetDate2.getMonth()+1}月${targetDate2.getDate()}日`;
 };
 
 const getTextView2 = () => {
