@@ -89,16 +89,41 @@ const setWeekOnesPlace = (o) => {
     }
 };
 
-const getTextView1_ = (yh, yt, yo, m, wt, wo) => {
-    return '';
+const getLastWeek_ = (y, w) => {
+    var onejan = new Date(y, 0, 1); // JAN/1
+    var last = new Date(y, 11, 28); // DEC/28
+    return Math.ceil((((last - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+}
+
+const getTextView1_ = (yh, yt, yo, wt, wo) => {
+    if (wt+wo === '00') return '--';
+    const lastWeek = getLastWeek_(Number(yh+yt+yo), Number(wt+wo));
+    console.log(lastWeek);
+    if (lastWeek < Number(wt+wo)) return '--';
+    
+    return `${yh}${yt}${yo}年第${wt}${wo}週`;
 };
 
 const getTextView1 = () => {
     return getTextView1_(yearHundredsPlace, yearTensPlace, yearOnesPlace, weekTensPlace, weekOnesPlace);
 };
 
-const getTextView2_ = (yh, yt, yo, m, wt, wo) => {
-    return '';
+const getTextView2_ = (yh, yt, yo, wt, wo) => {
+    const startStr = `${yh}${yt}${yo}/1/4`;
+    let startDate = new Date(startStr);
+    const day = startDate.getDay(); 	// 0-6 dayOfWeek
+    console.log(startDate);
+
+    const targetTime = startDate.getTime() + (-day+(Number(wt+wo)-1)*7)*24*60*60*1000;
+    let targetDate = new Date(targetTime);
+    console.log(targetDate);
+
+    
+    const targetTime2 = targetDate.getTime() + 6*24*60*60*1000;
+    let targetDate2 = new Date(targetTime2);
+    console.log(targetDate2);
+
+    return `${targetDate.getMonth()+1}月${targetDate.getDate()}日 〜 ${targetDate2.getMonth()+1}月${targetDate2.getDate()}`;
 };
 
 const getTextView2 = () => {
