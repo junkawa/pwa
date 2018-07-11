@@ -112,8 +112,25 @@ const setDayOnesPlace = (o) => {
     }
 };
 
+const getDate_ = (yh, yt, yo, m, dt, dop) => {
+    if (dt+dop === '00') return null;
+
+    {
+	const dStr = `${yh}${yt}${yo}/${m}/1`;
+	let d = new Date(dStr);
+	const lastDay = (new Date(d.getFullYear(), d.getMonth() + 1, 0)).getDate();
+	if (Number(dt+dop) > lastDay) return null;
+    }
+
+    const dStr = `${yh}${yt}${yo}/${m}/${dt}${dop}`;
+    let d = new Date(dStr);
+    if (d.toString() === 'Invalid Date') return null;
+    return d;
+};
+
 const getTextView1_ = (yh, yt, yo, m, dt, dop) => {
-    if (dt+dop === '00') return '--';
+    if (getDate_(yh, yt, yo, m, dt, dop) === null) return '--';
+
     if (dt === '0') dt = '';
     return `${yh}${yt}${yo}年${m}月${dt}${dop}日`;
 };
@@ -123,10 +140,9 @@ const getTextView1 = () => {
 };
 
 const getTextView2_ = (yh, yt, yo, m, dt, dop) => {
-    if (dt+dop === '00') return '';
+    let d = getDate_(yh, yt, yo, m, dt, dop);
+    if (d === null) return '';
 
-    const dStr = `${yh}${yt}${yo}/${m}/${dt}${dop}`;
-    let d = new Date(dStr);
     const weekth = parseInt(Number(`${dt}${dop}`)/7) + 1;
     const ret = `第${weekth}${weekStrMap[numWeekMap[d.getDay()]]}`;
     return ret;

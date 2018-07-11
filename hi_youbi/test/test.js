@@ -65,5 +65,15 @@ describe('app', function () {
 	    app.setDayOnesPlace('0');
             assert.equal(app.getTextView2(), expect3);
         });
+	const expect4 = '';
+        it('returns '+expect4, function () {
+	    app.setYearHundredsPlace('20');
+	    app.setYearTensPlace('1');
+	    app.setYearOnesPlace('8');
+	    app.setMonth('2');
+	    app.setDayTensPlace('2');
+	    app.setDayOnesPlace('9');
+            assert.equal(app.getTextView2(), expect4);
+        });
     });
 });
