@@ -55,6 +55,44 @@ $('#dayOnesPlaceList a').on('click', function (e) {
     updateView();
 });
 
+const setDate = (d) => {
+    const y = d.getFullYear();
+    const day = d.getDate();
+
+    const yearHundredsPlace = String( parseInt(y/100) );
+    app.setYearHundredsPlace(yearHundredsPlace);
+    $('#yearHundredsPlaceList a#'+yearHundredsPlace).tab('show');
+
+    const yearTensPlace = String( parseInt((y%100)/10) );
+    app.setYearTensPlace(yearTensPlace);
+    $('#yearTensPlaceList a#'+yearTensPlace).tab('show');
+
+    const yearOnesPlace = String((y%100)%10);
+    app.setYearOnesPlace(yearOnesPlace);
+    $('#yearOnesPlaceList a#'+yearOnesPlace).tab('show');
+
+    const month = String(d.getMonth()+1);
+    app.setMonth(month);
+    $('#monthList a#'+month).tab('show');
+
+    const dayTensPlace = String(parseInt(day/10));
+    app.setDayTensPlace(dayTensPlace);
+    $('#dayTensPlaceList a#'+dayTensPlace).tab('show');
+
+    const dayOnesPlace = String(day%10);
+    app.setDayOnesPlace(dayOnesPlace);
+    $('#dayOnesPlaceList a#'+dayOnesPlace).tab('show');
+};
+
+const firstView = () => {
+    setDate(new Date());
+    updateView();
+};
+
+(function() {
+    firstView();
+})();
+
 (function() {
     if ('serviceWorker' in navigator) {
 	navigator.serviceWorker
