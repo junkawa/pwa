@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2463455-9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-2463455-9');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="description" content="年月日を指定すると年間の週番号を表示します。ネットに繋がっていないオフラインでも動作します。">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="canonical" href="https://junkawa.github.io/pwa/day_yearweek/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>年月日から週番号を表示【オフライン対応】</title>
+
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#00988a">
+  
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="日→年週">
+  <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+  
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#f2f2f2">
+  
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  
+</head>
+<body>
+  <main>
+    <div class="view-container">
+      <div id="view1" class="my-view1">
+      </div>
+      <div id="view2" class="my-view2">
+      </div>
+    </div>
+
+    <div class="button-container">
+      <div class="row row-5 justify-content-center">
+	<div class="col-5">
+	  <div class="button-container-top-in">
+	    <div class="list-group-horizontal">
+	      <div class="list-group" id="yearHundredsPlaceList" role="tablist">
+		<a class="list-group-item list-group-item-action" id="19" data-toggle="list" href="" role="tab">19</a>
+		<a class="list-group-item list-group-item-action" id="20" data-toggle="list" href="" role="tab">20</a>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="button-container-in">
+	    <div class="row row-5 justify-content-center">
+	      <div class="col-6">
+		<div class="list-group" id="yearTensPlaceList" role="tablist">
+		  <a class="list-group-item list-group-item-action" id="0" data-toggle="list" href="" role="tab">0</a>
+		  <a class="list-group-item list-group-item-action" id="1" data-toggle="list" href="" role="tab">1</a>
+		  <a class="list-group-item list-group-item-action" id="2" data-toggle="list" href="" role="tab">2</a>
+		  <a class="list-group-item list-group-item-action" id="3" data-toggle="list" href="" role="tab">3</a>
+		  <a class="list-group-item list-group-item-action" id="4" data-toggle="list" href="" role="tab">4</a>
+		  <a class="list-group-item list-group-item-action" id="5" data-toggle="list" href="" role="tab">5</a>
+		  <a class="list-group-item list-group-item-action" id="6" data-toggle="list" href="" role="tab">6</a>
+		  <a class="list-group-item list-group-item-action" id="7" data-toggle="list" href="" role="tab">7</a>
+		  <a class="list-group-item list-group-item-action" id="8" data-toggle="list" href="" role="tab">8</a>
+		  <a class="list-group-item list-group-item-action" id="9" data-toggle="list" href="" role="tab">9</a>
+		</div>
+	      </div>
+	      <div class="col-6">
+		<div class="list-group" id="yearOnesPlaceList" role="tablist">
+		  <a class="list-group-item list-group-item-action" id="0" data-toggle="list" href="" role="tab">0</a>
+		  <a class="list-group-item list-group-item-action" id="1" data-toggle="list" href="" role="tab">1</a>
+		  <a class="list-group-item list-group-item-action" id="2" data-toggle="list" href="" role="tab">2</a>
+		  <a class="list-group-item list-group-item-action" id="3" data-toggle="list" href="" role="tab">3</a>
+		  <a class="list-group-item list-group-item-action" id="4" data-toggle="list" href="" role="tab">4</a>
+		  <a class="list-group-item list-group-item-action" id="5" data-toggle="list" href="" role="tab">5</a>
+		  <a class="list-group-item list-group-item-action" id="6" data-toggle="list" href="" role="tab">6</a>
+		  <a class="list-group-item list-group-item-action" id="7" data-toggle="list" href="" role="tab">7</a>
+		  <a class="list-group-item list-group-item-action" id="8" data-toggle="list" href="" role="tab">8</a>
+		  <a class="list-group-item list-group-item-action" id="9" data-toggle="list" href="" role="tab">9</a>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="col-2">
+	  <div class="button-container-in">
+	    <div class="list-group" id="monthList" role="tablist">
+	      <a class="list-group-item list-group-item-action" id="1" data-toggle="list" href="" role="tab">1</a>
+	      <a class="list-group-item list-group-item-action" id="2" data-toggle="list" href="" role="tab">2</a>
+	      <a class="list-group-item list-group-item-action" id="3" data-toggle="list" href="" role="tab">3</a>
+	      <a class="list-group-item list-group-item-action" id="4" data-toggle="list" href="" role="tab">4</a>
+	      <a class="list-group-item list-group-item-action" id="5" data-toggle="list" href="" role="tab">5</a>
+	      <a class="list-group-item list-group-item-action" id="6" data-toggle="list" href="" role="tab">6</a>
+	      <a class="list-group-item list-group-item-action" id="7" data-toggle="list" href="" role="tab">7</a>
+	      <a class="list-group-item list-group-item-action" id="8" data-toggle="list" href="" role="tab">8</a>
+	      <a class="list-group-item list-group-item-action" id="9" data-toggle="list" href="" role="tab">9</a>
+	      <a class="list-group-item list-group-item-action" id="10" data-toggle="list" href="" role="tab">10</a>
+	      <a class="list-group-item list-group-item-action" id="11" data-toggle="list" href="" role="tab">11</a>
+	      <a class="list-group-item list-group-item-action" id="12" data-toggle="list" href="" role="tab">12</a>
+	    </div>
+	  </div>
+	</div>
+	<div class="col-5">
+	  <div class="button-container-in">
+	    <div class="row row-5 justify-content-center">
+	      <div class="col-6">
+		<div class="list-group" id="dayTensPlaceList" role="tablist">
+		  <a class="list-group-item list-group-item-action" id="0" data-toggle="list" href="" role="tab">0</a>
+		  <a class="list-group-item list-group-item-action" id="1" data-toggle="list" href="" role="tab">1</a>
+		  <a class="list-group-item list-group-item-action" id="2" data-toggle="list" href="" role="tab">2</a>
+		  <a class="list-group-item list-group-item-action" id="3" data-toggle="list" href="" role="tab">3</a>
+		</div>
+	      </div>
+	      <div class="col-6">
+		<div class="list-group" id="dayOnesPlaceList" role="tablist">
+		  <a class="list-group-item list-group-item-action" id="0" data-toggle="list" href="" role="tab">0</a>
+		  <a class="list-group-item list-group-item-action" id="1" data-toggle="list" href="" role="tab">1</a>
+		  <a class="list-group-item list-group-item-action" id="2" data-toggle="list" href="" role="tab">2</a>
+		  <a class="list-group-item list-group-item-action" id="3" data-toggle="list" href="" role="tab">3</a>
+		  <a class="list-group-item list-group-item-action" id="4" data-toggle="list" href="" role="tab">4</a>
+		  <a class="list-group-item list-group-item-action" id="5" data-toggle="list" href="" role="tab">5</a>
+		  <a class="list-group-item list-group-item-action" id="6" data-toggle="list" href="" role="tab">6</a>
+		  <a class="list-group-item list-group-item-action" id="7" data-toggle="list" href="" role="tab">7</a>
+		  <a class="list-group-item list-group-item-action" id="8" data-toggle="list" href="" role="tab">8</a>
+		  <a class="list-group-item list-group-item-action" id="9" data-toggle="list" href="" role="tab">9</a>
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+
+    <div class="menu-container">
+      <a href="../">TOP</a>
+    </div>
+
+  </main>
+
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+  <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+  
+  <script src="js/bundle.js" async></script>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- github_pwa_1 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2298084199421497"
+     data-ad-slot="9084300688"
+     data-ad-format="auto"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+</body>
+</html>
