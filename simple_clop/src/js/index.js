@@ -108,6 +108,18 @@ const defaultSvgAttr = (svgId, gId) => {
             saveFile();
         }
     });
+
+    defaultSvgAttr('#outline-crop-square', '#outline-crop-square-line');
+    $('#outline-crop-square').on({
+        'click': function(e) {
+        }
+    });
+
+    defaultSvgAttr('#outline-crop-circle', '#outline-crop-circle-line');
+    $('#outline-crop-circle').on({
+        'click': function(e) {
+        }
+    });
 })();
 
 (function() {
