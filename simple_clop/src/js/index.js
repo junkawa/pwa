@@ -3,7 +3,15 @@
 var app = require('./app');
 var croppie = require('./croppie.min');
 var uploadCrop = null;
-var uploadFileName;
+var uploadFileObj;
+var cropType = 'square';
+
+const destroyCrop = () => {
+    if (uploadCrop === null) return;
+
+    uploadCrop.croppie('destroy');
+    uploadCrop = null;
+};
 
 const getCrop = () => {
     if (uploadCrop != null) return uploadCrop;
@@ -21,7 +29,7 @@ const getCrop = () => {
         viewport: {
             width: vw,
             height: vh,
-            // type: 'circle'
+            type: cropType
         },
         boundary: {
             width: bw,
@@ -31,13 +39,13 @@ const getCrop = () => {
     return uploadCrop;
 };
 
-const uploadFiles = (file) => {
+const uploadFile = (file) => {
     if (file) {
         let reader = new FileReader();
         
         reader.onload = function (e) {
             // console.log(file['name']);
-            uploadFileName = file['name'];
+            uploadFileObj = file;
             let crop = getCrop();
             crop.croppie('bind', {
                 url: e.target.result
@@ -73,9 +81,29 @@ const saveFile = () => {
         format: fmt
     }).then(function (canvas) {
         const reg=/(.*)(?:\.([^.]+$))/;
-        const filename = `${uploadFileName.match(reg)[1]}.${fmt}`;
-        download(canvas.toDataURL(), filename);
+        const uploadFileName = uploadFileObj['name'];
+        const downloadFilename = `${uploadFileName.match(reg)[1]}.${fmt}`;
+        download(canvas.toDataURL(), downloadFilename);
     });
+};
+
+const setCropType = (type) => {
+    if (cropType === type) return;
+    if (uploadCrop === null) return;
+    if (uploadFileObj === null) return;
+
+    destroyCrop();
+
+    cropType = type;
+    uploadFile(uploadFileObj);
+};
+
+const setCropTypeSquare = () => {
+    setCropType('square');
+};
+
+const setCropTypeCircle = () => {
+    setCropType('circle');
 };
 
 const defaultSvgAttr = (svgId, gId) => {
@@ -91,9 +119,9 @@ const defaultSvgAttr = (svgId, gId) => {
 };
 
 (function() {
-    // Webpack production mode changes uploadFiles name in js file.
-    // uploadFiles in input tag in html can't the method in js file.
-    $('#uploadFileElem').change(function() { uploadFiles($(this).prop('files')[0]); });
+    // Webpack production mode changes uploadFile name in js file.
+    // uploadFile in input tag in html can't the method in js file.
+    $('#uploadFileElem').change(function() { uploadFile($(this).prop('files')[0]); });
     
     defaultSvgAttr('#outline-insert-photo', '#outline-insert-photo-line');
     $('#outline-insert-photo').on({
@@ -112,12 +140,14 @@ const defaultSvgAttr = (svgId, gId) => {
     defaultSvgAttr('#outline-crop-square', '#outline-crop-square-line');
     $('#outline-crop-square').on({
         'click': function(e) {
+            setCropTypeSquare();
         }
     });
 
     defaultSvgAttr('#outline-crop-circle', '#outline-crop-circle-line');
     $('#outline-crop-circle').on({
         'click': function(e) {
+            setCropTypeCircle();
         }
     });
 })();
