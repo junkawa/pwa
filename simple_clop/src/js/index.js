@@ -45,27 +45,35 @@ const handleFiles = (file) => {
     }
 };
 
-const defaultSvgAttr = () => {
-    $('#outline-insert-photo')
+const defaultSvgAttr = (svgId, gId) => {
+    $(svgId)
         .on({
             'mouseover': function(e) {
-                $('#outline-insert-photo-line').attr('fill','#141414');
+                $(gId).attr('fill','#141414');
             },
             'mouseout': function(e) {
-                $('#outline-insert-photo-line').attr('fill','#747474');
-            },
-            'click': function(e) {
-                $('#fileElem').click();
+                $(gId).attr('fill','#747474');
             }
         });
 };
 
 (function() {
-    defaultSvgAttr();
-    
     // Webpack production mode changes handleFiles name in js file.
     // handleFiles in input tag in html can't the method in js file.
-    $('#fileElem').change(function() { handleFiles($(this).prop('files')[0]); });
+    $('#uploadFileElem').change(function() { handleFiles($(this).prop('files')[0]); });
+    
+    defaultSvgAttr('#outline-insert-photo', '#outline-insert-photo-line');
+    $('#outline-insert-photo').on({
+        'click': function(e) {
+            $('#uploadFileElem').click();
+        }
+    });
+    
+    defaultSvgAttr('#outline-save-alt', '#outline-save-alt-line');
+    $('#outline-save-alt').on({
+        'click': function(e) {
+        }
+    });
 })();
 
 (function() {
