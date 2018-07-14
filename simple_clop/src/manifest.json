@@ -1,6 +1,6 @@
 {
-  "name": "TODO【オフライン対応】",
-  "short_name": "TODO",
+  "name": "シンプルな画像切り抜きアプリ【オフライン対応】",
+  "short_name": "画像切抜き",
   "theme_color": "#00988a",
   "background_color": "#ffffff",
   "display": "standalone",
