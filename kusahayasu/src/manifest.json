@@ -1,10 +1,10 @@
 {
-  "name": "TODO【オフライン対応】",
-  "short_name": "TODO",
+  "name": "草生やす【オフライン対応】",
+  "short_name": "草生やす",
   "theme_color": "#00988a",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/pwa/TODO/",
+  "scope": "/pwa/kusahayasu/",
   "start_url": "index.html",
   "icons": [
     {
