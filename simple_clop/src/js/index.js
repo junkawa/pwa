@@ -109,10 +109,10 @@ const setCropTypeCircle = () => {
 const defaultSvgAttr = (svgId, gId) => {
     $(svgId)
         .on({
-            'mouseover': function(e) {
+            'mouseover': function() {
                 $(gId).attr('fill','#141414');
             },
-            'mouseout': function(e) {
+            'mouseout': function() {
                 $(gId).attr('fill','#747474');
             }
         });
@@ -125,35 +125,35 @@ const defaultSvgAttr = (svgId, gId) => {
     
     defaultSvgAttr('#outline-insert-photo', '#outline-insert-photo-line');
     $('#outline-insert-photo').on({
-        'click': function(e) {
+        'click': function() {
             $('#uploadFileElem').click();
         }
     });
     
     defaultSvgAttr('#outline-save-alt', '#outline-save-alt-line');
     $('#outline-save-alt').on({
-        'click': function(e) {
+        'click': function() {
             saveFile();
         }
     });
 
     defaultSvgAttr('#outline-crop-square', '#outline-crop-square-line');
     $('#outline-crop-square').on({
-        'click': function(e) {
+        'click': function() {
             setCropTypeSquare();
         }
     });
 
     defaultSvgAttr('#outline-crop-circle', '#outline-crop-circle-line');
     $('#outline-crop-circle').on({
-        'click': function(e) {
+        'click': function() {
             setCropTypeCircle();
         }
     });
 
     defaultSvgAttr('#outline-open-in-new', '#outline-open-in-new-line');
     $('#outline-open-in-new').on({
-        'click': function(e) {
+        'click': function() {
             let a = $('<a></a>').on({
                 'click': function() {
                     location.href = "../";
