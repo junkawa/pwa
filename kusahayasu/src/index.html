@@ -39,23 +39,21 @@
   <main>
     <div class="input-container">
       <div class="input-form">
-        <textarea class="form-control" id="inputTextarea" rows="10" maxlength="1024" placeholder="文字を入力..." ></textarea>
+        <textarea class="form-control" id="inputTextarea" rows="10" maxlength="4096" placeholder="文字を入力..." ></textarea>
       </div>
       <div class="w-button">
         <svg id="svg-w" version="1.1" width="3vh"  height="3vh" viewBox="0.0 0.0 24.0 24.0" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-          <clipPath id="p.0">
-            <path d="m0 0l24.0 0l0 24.0l-24.0 0l0 -24.0z" clip-rule="nonzero"/>
-          </clipPath>
-          <!-- <g clip-path="url(#p.0)" fill="#747474"> -->
-            <g clip-path="url(#p.0)" fill="#747474">
-              <path fill-opacity="0.0" d="m0 0l24.0 0l0 24.0l-24.0 0z" fill-rule="evenodd"/>
-              <path fill-opacity="0.0" d="m-7.5097427 -15.837907l17.984253 0l0 17.007874l-17.984253 0z" fill-rule="evenodd"/>
-              <path d="m15.771385 14.457465l2.703125 -10.765625l2.40625 0l-4.09375 14.078126l-1.953125 0l-3.421875 -10.671875l-3.343751 10.671875l-1.953125 0l-4.078125 -14.078126l2.390625 0l2.78125 10.53125l3.265626 -10.53125l1.953125 0l3.34375 10.765625z" fill-rule="nonzero"/>
-            </g>
+          <g id="svg-w-line" fill="#747474">
+            <path fill-opacity="0.0" d="m0 0l24.0 0l0 24.0l-24.0 0z" fill-rule="evenodd"/>
+            <path fill-opacity="0.0" d="m-7.5097427 -15.837907l17.984253 0l0 17.007874l-17.984253 0z" fill-rule="evenodd"/>
+            <path d="m15.771385 14.457465l2.703125 -10.765625l2.40625 0l-4.09375 14.078126l-1.953125 0l-3.421875 -10.671875l-3.343751 10.671875l-1.953125 0l-4.078125 -14.078126l2.390625 0l2.78125 10.53125l3.265626 -10.53125l1.953125 0l3.34375 10.765625z" fill-rule="nonzero"/>
+          </g>
         </svg>
       </div>
     </div>
     <div class="view-container">
+      <div id="viewArea">
+      </div>
     </div>
   </main>
 
