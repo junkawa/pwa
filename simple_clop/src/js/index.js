@@ -156,7 +156,7 @@ const defaultSvgAttr = (svgId, gId) => {
         'click': function(e) {
             let a = $('<a></a>').on({
                 'click': function() {
-                    location.href = "https://junkawa.github.io/";
+                    location.href = "../";
                 }
             });
             a.trigger('click');
