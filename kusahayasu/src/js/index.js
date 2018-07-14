@@ -56,24 +56,17 @@ const defaultSvgAttr = (svgId, gId) => {
         }
     });
     
-    defaultSvgAttr('#outline-save-alt', '#outline-save-alt-line');
-    $('#outline-save-alt').on({
-        'click': function() {
-            saveFile();
-        }
-    });
-    
-    defaultSvgAttr('#outline-open-in-new', '#outline-open-in-new-line');
-    $('#outline-open-in-new').on({
-        'click': function() {
-            let a = $('<a></a>').on({
-                'click': function() {
-                    location.href = "../";
-                }
-            });
-            a.trigger('click');
-        }
-    });
+    // defaultSvgAttr('#outline-open-in-new', '#outline-open-in-new-line');
+    // $('#outline-open-in-new').on({
+    //     'click': function() {
+    //         let a = $('<a></a>').on({
+    //             'click': function() {
+    //                 location.href = "../";
+    //             }
+    //         });
+    //         a.trigger('click');
+    //     }
+    // });
 })();
 
 (function() {
