@@ -21,7 +21,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.3.1/workbox
 self.__precacheManifest = [
   {
     "url": "css/style.css",
-    "revision": "daa34861c7f6442ca96ac645be1014cc"
+    "revision": "f36fcae2d8ac1d8b0e414872ddbfeece"
   },
   {
     "url": "images/icons/icon-128x128.png",

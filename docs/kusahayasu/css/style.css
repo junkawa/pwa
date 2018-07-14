@@ -24,7 +24,7 @@ main {
 }
 
 .input-container .input-form .form-control {
-    font-size: 2vh;
+    font-size: 3vh;
 }
 
 .input-container .w-button {
@@ -38,5 +38,5 @@ main {
     margin-left: 4vw;
     margin-right: 4vw;
     margin-bottom: 3vh;
-    font-size: 2vh;
+    font-size: 3vh;
 }
