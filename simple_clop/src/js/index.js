@@ -25,7 +25,7 @@ const getCrop = () => {
     //7:5
     uploadCrop = $('#upload-image').croppie({
         // enableExif: true,
-        // enableResize: true,
+        enableResize: true,
         viewport: {
             width: vw,
             height: vh,
