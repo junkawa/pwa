@@ -22,10 +22,13 @@ const getCrop = () => {
     const bw = h / 2; // fit crop-container(width:50vh)
     const bh = bw * 5 / 7; // 7:5
 
+    let resize = true;
+    if (cropType === 'circle') resize = false;
+    
     //7:5
     uploadCrop = $('#upload-image').croppie({
         // enableExif: true,
-        enableResize: true,
+        enableResize: resize,
         viewport: {
             width: vw,
             height: vh,
