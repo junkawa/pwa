@@ -150,6 +150,18 @@ const defaultSvgAttr = (svgId, gId) => {
             setCropTypeCircle();
         }
     });
+
+    defaultSvgAttr('#outline-open-in-new', '#outline-open-in-new-line');
+    $('#outline-open-in-new').on({
+        'click': function(e) {
+            let a = $('<a></a>').on({
+                'click': function() {
+                    location.href = "https://junkawa.github.io/";
+                }
+            });
+            a.trigger('click');
+        }
+    });
 })();
 
 (function() {
