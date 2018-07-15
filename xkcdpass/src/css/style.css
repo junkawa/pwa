@@ -1,9 +1,55 @@
 body {
-    background-color: #ffffff;
+    background-color: #e8e8e8;
 }
 
 main {
-    width: 95vw;
+    width: 80vw;
     margin-left: auto;
     margin-right: auto;
+}
+
+.view-container {
+    background-color: #fafafa;
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+    padding-top: 2vw;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12)
+}
+
+.view-container .view-form {
+    margin-left: 4vw;
+    margin-right: 4vw;
+    margin-top: 1.5vh;
+    margin-bottom: 3vh;  
+    font-size: 3vh;
+}
+
+.view-container .view-form .wordbox {
+    margin-right: 2vw;
+    display: inline-block;
+}
+
+.view-container .menu-subcontainer {
+    line-height: 0;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    padding-bottom: 1.0vh;
+}
+
+.view-container .radio {
+    margin-right: 2vw;
+    display: inline-block;
+}
+
+.view-container .menu-subcontainer .replay-button {
+    text-align: right;
+}
+
+.row-5 {
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.row-5 >div {
+    padding: 0 5px;
 }
