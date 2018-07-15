@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2463455-9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-2463455-9');
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="description" content="日本語の名詞からパスワードを生成します。パスワードは閲覧者のパソコン上で生成されるので安全です。ネットに繋がっていないオフラインでも動作します。">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="canonical" href="https://junkawa.github.io/pwa/xkcdpass/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本語名詞のパスワード生成【オフライン対応】</title>
+
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#00988a">
+  
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="パスワード生成">
+  <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+  
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#f2f2f2">
+  
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  
+</head>
+<body>
+  <main>
+    <div class="view-container">
+      <div class="view-form"><div class="wordbox" id="word0"></div><div class="wordbox" id="word1"></div><div class="wordbox" id="word2"></div><div class="wordbox" id="word3"></div><div class="wordbox" id="word4"></div><div class="wordbox" id="word5"></div></div>
+      <div class="menu-subcontainer">
+        <div class="row row-5">
+          <div class="col">
+            <div class="radio">
+              <label><input type="radio" name="wordNumRadios" id="wordNumRadio1" value="4" checked>4</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="wordNumRadios" id="wordNumRadio2" value="5">5</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="wordNumRadios" id="wordNumRadio3" value="6">6</label>
+            </div>
+          </div>          
+          <div class="col">
+            <div class="checkbox">
+              <label><input type="checkbox" id="hepburn">ヘボン</label>
+            </div>
+          </div>
+          <div class="col text-right">
+            <div class="replay-button">
+              <svg id="svg-replay" version="1.1" width="3vh"  height="3vh" viewBox="0.0 0.0 24.0 24.0" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                <g id="svg-replay-line" fill="#747474">
+	          <path d="M12,5V1L7,6l5,5V7c3.31,0,6,2.69,6,6s-2.69,6-6,6s-6-2.69-6-6H4c0,4.42,3.58,8,8,8s8-3.58,8-8S16.42,5,12,5z"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-right">
+      <svg id="outline-open-in-new" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="3vh" height="3vh" viewBox="0 0 24 24" xml:space="preserve">
+        <g id="outline-open-in-new-line" fill="#747474">
+	  <path display="inline" d="M18,19H6c-0.55,0-1-0.45-1-1V6c0-0.55,0.45-1,1-1h5c0.55,0,1-0.45,1-1v0c0-0.55-0.45-1-1-1H5
+		                    C3.89,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2v-6c0-0.55-0.45-1-1-1h0c-0.55,0-1,0.45-1,1v5C19,18.55,18.55,19,18,19z
+		                    M14,4L14,4c0,0.55,0.45,1,1,1h2.59l-9.13,9.13c-0.39,0.39-0.39,1.02,0,1.41l0,0c0.39,0.39,1.02,0.39,1.41,0L19,6.41V9
+		                    c0,0.55,0.45,1,1,1h0c0.55,0,1-0.45,1-1V4c0-0.55-0.45-1-1-1h-5C14.45,3,14,3.45,14,4z"/>
+	  <path display="inline" d="M19,19H5V5h7V3H3v18h18v-9h-2V19z M14,3v2h3.59l-9.83,9.83l1.41,1.41L19,6.41V10h2V3H14z"/>
+	  <path d="M19,19H5V5h7V3H5C3.89,3,3,3.9,3,5v14c0,1.1,0.89,2,2,2h14c1.1,0,2-0.9,2-2v-7h-2V19z M14,3v2h3.59l-9.83,9.83l1.41,1.41
+		   L19,6.41V10h2V3H14z"/>
+	  <path display="inline" d="M19,19H5V5h7V3H5C3.89,3,3,3.9,3,5v14c0,1.1,0.89,2,2,2h14c1.1,0,2-0.9,2-2v-7h-2V19z M14,3v2h3.59
+		                    l-9.83,9.83l1.41,1.41L19,6.41V10h2V3H14z"/>
+        </g>
+      </svg>
+    </div>
+  </main>
+
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+  <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+  
+  <script src="js/bundle.js" async></script>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- github_pwa_1 -->
+  <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-2298084199421497"
+     data-ad-slot="9084300688"
+     data-ad-format="auto"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+</body>
+</html>
