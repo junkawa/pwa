@@ -3,7 +3,8 @@
 const noun = require('./noun.json');
 
 const getHepburn = (str) => {
-    return str.replace(/si/g, 'shi').replace(/ti/g, 'chi').replace(/tu/g, 'tsu').replace(/hu/g, 'fu').replace(/zi/g, 'ji').replace(/di/g, 'ji').replace(/du/g, 'zu');
+    // /(?<!s)hu/g matches 'hu', excludes 'shu'.
+    return str.replace(/si/g, 'shi').replace(/ti/g, 'chi').replace(/tu/g, 'tsu').replace(/(?<!s)hu/g, 'fu').replace(/zi/g, 'ji').replace(/di/g, 'ji').replace(/du/g, 'zu');
 };
 
 const getPassword = (wordNum, isHepburn) => {
@@ -22,5 +23,7 @@ const getPassword = (wordNum, isHepburn) => {
     }
     return ret;
 };
+
+// console.log(getHepburn('shuhushuhushu'));
 
 module.exports = {getPassword}
