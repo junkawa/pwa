@@ -1,10 +1,10 @@
 {
-  "name": "TODO【オフライン対応】",
-  "short_name": "TODO",
+  "name": "バーコードから商品検索【インストール不要】",
+  "short_name": "バーコード",
   "theme_color": "#00988a",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/pwa/TODO/",
+  "scope": "/pwa/barcode_search/",
   "start_url": "index.html",
   "icons": [
     {
