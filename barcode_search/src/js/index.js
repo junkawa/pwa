@@ -180,10 +180,10 @@ const barcodeInit = () => {
     });
     BR.BarcodeReader.PostOrientation = true;
     BR.BarcodeReader.OrientationCallback = function(result) {
-        // canvas.width = result.width;
-        // canvas.height = result.height;
-        // const data = ctx.getImageData(0,0,canvas.width,canvas.height);
-        const data = ctx.getImageData(0,0,result.width,result.height);
+        canvas.width = result.width;
+        canvas.height = result.height;
+        const data = ctx.getImageData(0,0,canvas.width,canvas.height);
+        //const data = ctx.getImageData(0,0,result.width,result.height);
         for(let i = 0; i < data.data.length; i++) {
             data.data[i] = result.data[i];
         }
