@@ -167,15 +167,15 @@ const barcodeInit = () => {
             // console.log('barcode failed')
         }
         // if(result.length > 0){
-	//     var tempArray = [];
-	//     for(var i = 0; i < result.length; i++) {
-	//         tempArray.push(result[i].Format+' : '+result[i].Value);
-	//     }
-	//     Result.innerHTML=tempArray.join('<br />');
+        //     var tempArray = [];
+        //     for(var i = 0; i < result.length; i++) {
+        //         tempArray.push(result[i].Format+' : '+result[i].Value);
+        //     }
+        //     Result.innerHTML=tempArray.join('<br />');
         // }else{
-	//     if(result.length === 0) {
-	//         Result.innerHTML='Decoding failed.';
-	//     }
+        //     if(result.length === 0) {
+        //         Result.innerHTML='Decoding failed.';
+        //     }
         // }
     });
     BR.BarcodeReader.PostOrientation = true;
@@ -185,7 +185,7 @@ const barcodeInit = () => {
         // const data = ctx.getImageData(0,0,canvas.width,canvas.height);
         const data = ctx.getImageData(0,0,result.width,result.height);
         for(let i = 0; i < data.data.length; i++) {
-	    data.data[i] = result.data[i];
+            data.data[i] = result.data[i];
         }
         ctx.putImageData(data,0,0);
     };
@@ -195,7 +195,7 @@ const barcodeInit = () => {
         ctx.lineWIdth = '2';
         ctx.strokeStyle='red';
         for(let i = 0; i < result.length; i++) {
-	    ctx.rect(result[i].x,result[i].y,result[i].width,result[i].height); 
+            ctx.rect(result[i].x,result[i].y,result[i].width,result[i].height); 
         }
         ctx.stroke();
     });
@@ -210,17 +210,17 @@ const uploadFile = (file) => {
             svgHide('outline-check');
             svgHide('outline-cancel');
             reader.onload = function (e) {
-	        showPicture.onload = function(event) {
-		    //Result.innerHTML='';
-		    BR.BarcodeReader.DecodeImage(showPicture);
-	        };
-	        showPicture.src = e.target.result;
+                showPicture.onload = function(event) {
+                    //Result.innerHTML='';
+                    BR.BarcodeReader.DecodeImage(showPicture);
+                };
+                showPicture.src = e.target.result;
             }
             reader.readAsDataURL(file);
-	}
-	catch (e) {
-	    Result.innerHTML = 'Neither createObjectURL or FileReader are supported';
-	}
+        }
+        catch (e) {
+            //Result.innerHTML = 'Neither createObjectURL or FileReader are supported';
+        }
     }
 };
 
@@ -283,13 +283,13 @@ const defaultSvgAttr = (svgId, gId) => {
     //         if (files && files.length > 0) {
     //             var file = files[0];
     //             try {
-    //     	    var URL = window.URL || window.webkitURL;
-    //     	    showPicture.onload = function(event) {
-    //     	        Result.innerHTML='';
-    //     	        BR.BarcodeReader.DecodeImage(showPicture);
-    //     	        URL.revokeObjectURL(showPicture.src);
-    //     	    };
-    //     	    showPicture.src = URL.createObjectURL(file);
+    //              var URL = window.URL || window.webkitURL;
+    //              showPicture.onload = function(event) {
+    //                  Result.innerHTML='';
+    //                  BR.BarcodeReader.DecodeImage(showPicture);
+    //                  URL.revokeObjectURL(showPicture.src);
+    //              };
+    //              showPicture.src = URL.createObjectURL(file);
     //             }
     //             catch (e) {
     //             }
@@ -300,7 +300,7 @@ const defaultSvgAttr = (svgId, gId) => {
 
 (() => {
     if ('serviceWorker' in navigator) {
-	navigator.serviceWorker
+        navigator.serviceWorker
             .register('./sw.js');
     }
 })();
