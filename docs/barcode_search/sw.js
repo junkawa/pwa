@@ -57,11 +57,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "ce97b74e05c90f0aacc0fd68eb161530"
+    "revision": "b74a3ea8b8062fc0cb4bd48fd36821a7"
   },
   {
     "url": "js/bundle.js",
-    "revision": "f3eacadf6d03591a0a2371be7ebfd4ff"
+    "revision": "2fb094942f0a618e657c28242d6cfc1e"
   },
   {
     "url": "js/quagga.min.js",
