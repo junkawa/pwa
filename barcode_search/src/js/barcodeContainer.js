@@ -1,7 +1,16 @@
 'use strict';
 
+const sleep = (waitSeconds, callback) => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+        resolve(callback());
+    }, waitSeconds * 1000);
+  });
+};
+
 // TODO jquery
 const BR = require('./BarcodeReader');
+const Quagga = require('./quagga.min').default;
 
 let showPicture;
 
@@ -33,10 +42,12 @@ const initBarcodeReader = (callback) => {
             const jan = result[0].Value;
             // console.log(`jan:${jan}`)
             svgShow('outline-check');
+            sleep(3, () => {svgHide('outline-check');});
             // sendRequest(jan);
             callback(jan);
         } else {
             svgShow('outline-cancel');
+            sleep(3, () => {svgHide('outline-cancel');});
             // console.log('barcode failed')
         }
         // if(result.length > 0){

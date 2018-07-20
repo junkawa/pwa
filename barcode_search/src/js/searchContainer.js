@@ -147,6 +147,9 @@ const init = () => {
             createSearchLink(getSelectedKeywords());
         }
     });
+
+    // addButtons(['AAAA','FUUUUUUU']);
+
     // $('#outline-search').on({
     //     'click': function(e) {
     //         console.log('search click');
