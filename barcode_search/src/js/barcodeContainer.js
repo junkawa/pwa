@@ -87,7 +87,7 @@ const App = {
                 src: src
             }, (result) => {
                 // console.log('decodeSingle callback');
-                if (result.codeResult) {
+                if (result && result.codeResult) {
                     const code = result.codeResult.code;
                     setDecodeSuccessIcon();
                     this.decodeSuccessCallback(result.codeResult.code);
