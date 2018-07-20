@@ -15,25 +15,55 @@ main {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 
+.barcode-container .canvas-box {
+    padding-top: 1vh;
+    width: 80vw;
+    min-height: 20vh;
+    text-align: center;
+}
+
+/* #picture { */
+/*     max-width: 80%; */
+/*     height: auto; */
+/* } */
+
+#interactive.viewport {
+    max-width: 64vw;            /* 80vw * 0.8 */
+    max-height: 24vh;           /* 30vh * 0.8 */
+    width: auto;
+    height: auto;
+    display: inline-block;
+}
+
+
+#interactive.viewport canvas, video {
+    float: left;
+    max-width: 64vw;            /* 80vw * 0.8 */
+    max-height: 24vh;           /* 30vh * 0.8 */
+    width: auto;
+    height: auto;
+    display: inline-block;
+}
+
+#interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
+    max-width: 64vw;            /* 80vw * 0.8 */
+    max-height: 24vh;           /* 30vh * 0.8 */
+    width: auto;
+    height: auto;
+    margin-left: -64vw;
+    display: none;
+}
+
 .barcode-container .menu-container {
     margin-right: 3vw;
     margin-left: 3vw;
 }
 
-.barcode-container .canvas-box {
-    width: 80vw;
-}
-
 .barcode-container .menu-container .loading {
-    min-height: 4vh;
-    min-widht: 4vh;
+    min-height: 5vh;
+    min-widht: 5vh;
     background: url("../images/loader-60x60.gif") center right no-repeat;
-    background-size: 4vh 4vh;
-}
-
-#picture {
-    max-width: 100%;
-    height: auto;
+    background-size: 5vh 5vh;
 }
 
 .search-container {
@@ -44,8 +74,8 @@ main {
     background-color: #fafafa;
     margin-top: 3vh;
     margin-bottom: 3vh;
-    padding-right: 0vw;
-    padding-left: 3vw;
+    /* padding-right: 0vw; */
+    /* padding-left: 3vw; */
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 
@@ -53,23 +83,55 @@ main {
     min-height: 20vw;
     padding-top: 3vw;           /*TODO*/
     padding-bottom: 0vh;        /*TODO*/
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+/* toggle-on */
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #00988a;
+    border-color: #00988a;
+}
+
+/* toggle-off */
+.btn-primary.custom-file-control:before, .btn.btn-primary {
+    border: medium solid;
+    color: #009688;
+    background-color: transparent;
+    border-color: #009688;
 }
 
 .key-button {
-    margin-right: 1vw;
+    margin-right: 2vw;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;    
 }
-
 
 .search-container .keywords-container .loading {
     min-height: 4vh;
     min-widht: 4vh;
     text-align: center;
     vertical-align: middle;
-    padding-top: 3vw;           /*TODO*/
+    margin-top: 5vh;
     background: url("../images/loader-60x60.gif") center center no-repeat;
     background-size: 4vh 4vh;
 }
 
 .search-container .button-container {
     text-align: right;
+}
+
+#dropdownMenuLink {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 1vw;
+    margin-bottom: 0px;
+}
+
+.dropdown-toggle::after {
+    display:none;
 }

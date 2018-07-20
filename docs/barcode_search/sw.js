@@ -21,7 +21,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.3.1/workbox
 self.__precacheManifest = [
   {
     "url": "css/style.css",
-    "revision": "cbd5d9ef15b8ced4da4fb47b63c489da"
+    "revision": "b45d3bcfb13fc4fb681bd0adee9f0f44"
   },
   {
     "url": "images/icons/icon-128x128.png",
@@ -57,11 +57,15 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "a194717fc84174a494e7af0a1e84c6c3"
+    "revision": "ce97b74e05c90f0aacc0fd68eb161530"
   },
   {
     "url": "js/bundle.js",
-    "revision": "7a9d00c0c93e14b994dedbab55e280cc"
+    "revision": "f3eacadf6d03591a0a2371be7ebfd4ff"
+  },
+  {
+    "url": "js/quagga.min.js",
+    "revision": "3164defb246328c3722c8369d48de3eb"
   },
   {
     "url": "manifest.json",
