@@ -73,7 +73,7 @@ main {
     border-bottom-left-radius: 5px;    
     background-color: #fafafa;
     margin-top: 3vh;
-    margin-bottom: 3vh;
+    margin-bottom: 1vh;
     /* padding-right: 0vw; */
     /* padding-left: 3vw; */
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
@@ -135,3 +135,8 @@ main {
 .dropdown-toggle::after {
     display:none;
 }
+
+.form-link {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+};
