@@ -14,6 +14,7 @@ cp -a src/images dist/ 2>/dev/null
 cp -a src/css dist/ 2>/dev/null
 
 mkdir dist/js
+cp -a src/js/quagga.min.js dist/js/ 2>/dev/null
 
 webpack
 

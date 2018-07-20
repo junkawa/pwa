@@ -8,12 +8,6 @@ const sleep = (waitSeconds, callback) => {
   });
 };
 
-// TODO jquery
-const BR = require('./BarcodeReader');
-const Quagga = require('./quagga.min').default;
-
-let showPicture;
-
 const svgShow = (id) => {
     $('#'+id).show();
 };
@@ -22,89 +16,16 @@ const svgHide = (id) => {
     $('#'+id).hide();
 };
 
+const getBarcodeSelector = () => {
+    return '.barcode-container .menu-container .loading';
+}
+
 const showBarcodeLoading = () => {
-    $('.barcode-container .menu-container .loading').show();
+    $(getBarcodeSelector()).show();
 };
 
 const hideBarcodeLoading = () => {
-    $('.barcode-container .menu-container .loading').hide();
-};
-
-const initBarcodeReader = (callback) => {
-    showPicture = document.createElement('img');
-
-    const canvas =document.getElementById('picture');
-    const ctx = canvas.getContext('2d');
-    BR.BarcodeReader.Init();
-    BR.BarcodeReader.SetImageCallback(function(result) {
-        hideBarcodeLoading();
-        if(result.length > 0){
-            const jan = result[0].Value;
-            // console.log(`jan:${jan}`)
-            svgShow('outline-check');
-            sleep(3, () => {svgHide('outline-check');});
-            // sendRequest(jan);
-            callback(jan);
-        } else {
-            svgShow('outline-cancel');
-            sleep(3, () => {svgHide('outline-cancel');});
-            // console.log('barcode failed')
-        }
-        // if(result.length > 0){
-        //     var tempArray = [];
-        //     for(var i = 0; i < result.length; i++) {
-        //         tempArray.push(result[i].Format+' : '+result[i].Value);
-        //     }
-        //     Result.innerHTML=tempArray.join('<br />');
-        // }else{
-        //     if(result.length === 0) {
-        //         Result.innerHTML='Decoding failed.';
-        //     }
-        // }
-    });
-    BR.BarcodeReader.PostOrientation = true;
-    BR.BarcodeReader.OrientationCallback = function(result) {
-        canvas.width = result.width;
-        canvas.height = result.height;
-        const data = ctx.getImageData(0,0,canvas.width,canvas.height);
-        //const data = ctx.getImageData(0,0,result.width,result.height);
-        for(let i = 0; i < data.data.length; i++) {
-            data.data[i] = result.data[i];
-        }
-        ctx.putImageData(data,0,0);
-    };
-    BR.BarcodeReader.SwitchLocalizationFeedback(true);
-    BR.BarcodeReader.SetLocalizationCallback(function(result) {
-        ctx.beginPath();
-        ctx.lineWIdth = '2';
-        ctx.strokeStyle='red';
-        for(let i = 0; i < result.length; i++) {
-            ctx.rect(result[i].x,result[i].y,result[i].width,result[i].height); 
-        }
-        ctx.stroke();
-    });
-};
-
-const uploadFile = (file) => {
-    if (file) {
-        let reader = new FileReader();
-        try {
-            showBarcodeLoading();
-            svgHide('outline-check');
-            svgHide('outline-cancel');
-            reader.onload = function (e) {
-                showPicture.onload = function(event) {
-                    //Result.innerHTML='';
-                    BR.BarcodeReader.DecodeImage(showPicture);
-                };
-                showPicture.src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-        catch (e) {
-            //Result.innerHTML = 'Neither createObjectURL or FileReader are supported';
-        }
-    }
+    $(getBarcodeSelector()).hide();
 };
 
 const defaultSvgAttr = (svgId, gId) => {
@@ -119,8 +40,110 @@ const defaultSvgAttr = (svgId, gId) => {
         });
 };
 
+const setStartDecodeIcon = () => {
+    showBarcodeLoading();
+    svgHide('outline-check');
+    svgHide('outline-cancel');
+};
+
+const setDecodeSuccessIcon = () => {
+    hideBarcodeLoading();
+    svgShow('outline-check');
+    sleep(3, () => {svgHide('outline-check');});
+};
+
+const setDecodeErrorIcon = () => {
+    hideBarcodeLoading();
+    svgShow('outline-cancel');
+    sleep(3, () => {svgHide('outline-cancel');});
+};
+
+// const updateBarcodeImage = () => {
+    // const canvas = Quagga.canvas.dom.image;
+    //const canvasBoxSelector = $('.canvas-box');
+    //canvasBoxSelector.empty();
+    //canvasBoxSelector.append($('<img>').attr('id','picture').attr('src', canvas.toDataURL())); // #picture for css
+    // $('#picture').attr('src', canvas.toDataURL());
+// };
+
+const App = {
+    decodeSuccessCallback: null,
+    init: function(callback) {
+        this.decodeSuccessCallback = callback;
+        this.attachListeners();
+    },
+    decode: function(src) {
+        setStartDecodeIcon();
+
+        Quagga.decodeSingle(
+            {
+                locate: true,
+                decoder:{ readers: [{format: 'ean_reader',
+                                     config: {
+                                         supplements: [
+                                             //'ean_5_reader', 'ean_2_reader'
+                                         ]}
+                                    }]},
+                src: src
+            }, (result) => {
+                // console.log('decodeSingle callback');
+                if (result.codeResult) {
+                    const code = result.codeResult.code;
+                    setDecodeSuccessIcon();
+                    this.decodeSuccessCallback(result.codeResult.code);
+                } else {
+                    setDecodeErrorIcon();
+                }
+                // updateBarcodeImage();
+            }
+        );
+    },
+    attachListeners: function() {
+        const self = this;
+        const fileInput = document.querySelector('#uploadFileElem');
+
+        fileInput.addEventListener('change', function onChange(e) {
+            e.preventDefault();
+            // fileInput.removeEventListener('change', onChange); // ??
+            if (e.target.files && e.target.files.length) {
+                self.decode(URL.createObjectURL(e.target.files[0]));
+            }
+        });
+    }
+};
+
+Quagga.onProcessed(function(result) {
+    // console.log('onProcessed');
+    // console.log(result);
+    const drawingCtx = Quagga.canvas.ctx.overlay;
+    const drawingCanvas = Quagga.canvas.dom.overlay;
+
+    if (result) {
+        if (result.boxes) {
+            drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute('width')), parseInt(drawingCanvas.getAttribute('height')));
+            result.boxes.filter(function (box) {
+                return box !== result.box;
+            }).forEach(function (box) {
+                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: 'green', lineWidth: 2});
+            });
+        }
+
+        if (result.box) {
+            Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: '#00F', lineWidth: 2});
+        }
+
+        if (result.codeResult && result.codeResult.code) {
+            Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
+        }
+    }
+});
+
+// Quagga.onDetected(function(result) {
+//     // console.log('onDetected');
+// });
+
 const init = (callback) => {
-    initBarcodeReader(callback);
+    App.init(callback);
     
     defaultSvgAttr('#outline-insert-photo', '#outline-insert-photo-line');
     $('#outline-insert-photo').on({
@@ -128,27 +151,6 @@ const init = (callback) => {
             $('#uploadFileElem').click();
         }
     });
-    $('#uploadFileElem').change(function() { uploadFile($(this).prop('files')[0]); }); // TODO
-    // var takePicture = document.querySelector('#takePicture');
-    // if(takePicture && showPicture) {
-    //     takePicture.onchange = function (event) {
-    //         var files = event.target.files;
-    //         if (files && files.length > 0) {
-    //             var file = files[0];
-    //             try {
-    //              var URL = window.URL || window.webkitURL;
-    //              showPicture.onload = function(event) {
-    //                  Result.innerHTML='';
-    //                  BR.BarcodeReader.DecodeImage(showPicture);
-    //                  URL.revokeObjectURL(showPicture.src);
-    //              };
-    //              showPicture.src = URL.createObjectURL(file);
-    //             }
-    //             catch (e) {
-    //             }
-    //         }
-    //     };
-    // }
 };
  
 module.exports = {init};

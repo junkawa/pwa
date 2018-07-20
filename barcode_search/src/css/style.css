@@ -15,13 +15,48 @@ main {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
 
+.barcode-container .canvas-box {
+    padding-top: 1vh;
+    width: 80vw;
+    min-height: 20vh;
+    text-align: center;
+}
+
+/* #picture { */
+/*     max-width: 80%; */
+/*     height: auto; */
+/* } */
+
+#interactive.viewport {
+    max-width: 64vw;            /* 80vw * 0.8 */
+    max-height: 24vh;           /* 30vh * 0.8 */
+    width: auto;
+    height: auto;
+    display: inline-block;
+}
+
+
+#interactive.viewport canvas, video {
+    float: left;
+    max-width: 64vw;            /* 80vw * 0.8 */
+    max-height: 24vh;           /* 30vh * 0.8 */
+    width: auto;
+    height: auto;
+    display: inline-block;
+}
+
+#interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
+    max-width: 64vw;            /* 80vw * 0.8 */
+    max-height: 24vh;           /* 30vh * 0.8 */
+    width: auto;
+    height: auto;
+    margin-left: -64vw;
+    display: none;
+}
+
 .barcode-container .menu-container {
     margin-right: 3vw;
     margin-left: 3vw;
-}
-
-.barcode-container .canvas-box {
-    width: 80vw;
 }
 
 .barcode-container .menu-container .loading {
@@ -29,11 +64,6 @@ main {
     min-widht: 5vh;
     background: url("../images/loader-60x60.gif") center right no-repeat;
     background-size: 5vh 5vh;
-}
-
-#picture {
-    max-width: 100%;
-    height: auto;
 }
 
 .search-container {
@@ -100,6 +130,8 @@ main {
     padding-left: 0px;
     padding-right: 1vw;
     margin-bottom: 0px;
-    -webkit-appearance:none;
 }
 
+.dropdown-toggle::after {
+    display:none;
+}
